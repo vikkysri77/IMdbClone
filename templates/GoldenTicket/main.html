@@ -14,6 +14,8 @@
         {% for m in movies %}
         <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
           <div class="card h-100 p-4">
+             <img src="{{ m.movie_poster.url }}" class="card-img-top" alt="{{ m.movie_title}}" style="width: auto; height: 350px; object-fit: contain;">
+            <br>
             <h4>{{m.movie_title}}</h4>
             <p class="text-muted">{{m.release_year}} | {{m.director}}</p>
             <p>{{m.description}}</p>
