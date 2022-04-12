@@ -6,7 +6,8 @@ class Movie(models.Model):
     release_year = models.IntegerField()
     director = models.CharField(max_length=100)
     movie_poster = models.ImageField(upload_to="images", default="../static/default_avatar.png", blank=True)
-    description = models.TextField()
+    movie_rating = models.FloatField(default=False)
+    #description = models.TextField()
 
     def __str__(self):
         return self.movie_title

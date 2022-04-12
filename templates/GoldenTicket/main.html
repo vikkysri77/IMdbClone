@@ -1,29 +1,49 @@
+{% extends "GoldenTicket/header.html" %}
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 </head>
 <body>
-{% load static %}
- <div class="container p-4">
+{% block content %}
+
+
+<!--CTA-->
+<div class="container py-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-6 pb-4">
+      <h1 class="display-4 font-weight-bold">WELCOME CINEPHILES!!</h1>
+      <h5>Movie Database Website created by Group 4.</h5>
+        <a class="btn btn-primary mt-2" href="/movies">Browse movies</a>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <img class ="img-fluid" src="{% static 'images/Dunkirk_cta.jpeg' %}" alt="Dunkirk">
+    </div>
+  </div>
+</div>
+
+
+ <div class="container py-3">
+ <h2>Recently Watched</h2>
+ <hr>
+ <br>
       <div class="row">
         {% for m in movies %}
-        <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
-          <div class="card h-100 p-4">
-             <img src="{{ m.movie_poster.url }}" class="card-img-top" alt="{{ m.movie_title}}" style="width: auto; height: 350px; object-fit: contain;">
+        <div class="col-sm-2 col-sm-offset-1 pb-4">
+          <div class="card h-100 pb-4" style="border: none" >
+             <img src="{{ m.movie_poster.url }}" class="card-img-top" alt="{{ m.movie_title}}" style="width: auto; height: 250px; object-fit: contain;">
             <br>
             <h4>{{m.movie_title}}</h4>
             <p class="text-muted">{{m.release_year}} | {{m.director}}</p>
-            <p>{{m.description}}</p>
+            <span class = "fa fa-star checked"> {{ m.movie_rating }} </span>
           </div>
         </div>
         {% endfor %}
       </div>
     </div>
-
+{% endblock %}
 </body>
 </html>
