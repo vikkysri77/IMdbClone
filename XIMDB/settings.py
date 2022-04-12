@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'GoldenTicket.apps.GoldenticketConfig',
+    'django_auth.users',
 ]
 
 MIDDLEWARE = [
