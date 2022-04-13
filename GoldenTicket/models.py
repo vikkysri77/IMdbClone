@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+
 from django_auth.users.models import *
 
 # Create your models here.
@@ -9,7 +11,7 @@ class Movie(models.Model):
     director = models.CharField(max_length=100)
     movie_poster = models.ImageField(upload_to="images", default="../static/default_avatar.png", blank=True)
     movie_rating = models.FloatField(default=False)
-    #description = models.TextField()
+    description = models.TextField(default=False)
 
     def __str__(self):
         return self.movie_title

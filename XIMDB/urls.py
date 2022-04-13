@@ -20,9 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('home/', include('django_auth.users.urls')),
-    path('', include("GoldenTicket.urls")),
+    path('', include("GoldenTicket.urls", namespace='GoldenTicket')),
 
 ]
 

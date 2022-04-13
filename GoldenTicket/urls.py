@@ -2,12 +2,14 @@ from django.urls import path
 from . import views
 
 app_name = "GoldenTicket"
-app_name = "users"
 
 urlpatterns =[
     path("", views.homepage, name="homepage"),
     path("movielist/", views.movielist, name="movielist"),
-    path("home/", views.home, name="home"),
-    path("signup/", views.SignUp.as_view(), name="signup"),
+    path("signup/", views.register, name="signup"),
+    path("login/", views.login_request, name="login"),
+    path("logout/", views.logout_request, name="logout"),
+    path("<movie_page>", views.moviedetail, name="moviedetail"),
+
 ]
 

@@ -1,0 +1,24 @@
+{% extends "GoldenTicket/header.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Detail</title>
+</head>
+<body>
+{% block content %}
+
+    <!--Movie Detail-->
+    <div class="container">
+        <h1 class="font-weight-bold">{{ moviedetail.movie_title }}</h1>
+        <p class="font-weight-bold" style="font-size:15px">{{moviedetail.release_year}} | {{moviedetail.director}}</p>
+    </div>
+    <div class="container">
+        <br>
+        <p>{{ moviedetail.description }}</p>
+    </div>
+
+{% endblock %}
+</body>
+</html>
