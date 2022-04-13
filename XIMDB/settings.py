@@ -77,9 +77,18 @@ WSGI_APPLICATION = 'XIMDB.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': {},
+    'users_db': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'users_db.sqlite3',
+        'USER': 'mdharry',
+        'PASSWORD': 'test123',
+    },
+    'db': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'USER': 'mdharry',
+        'PASSWORD': 'test123',
     }
 }
 
