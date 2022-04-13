@@ -60,10 +60,11 @@ def movielist(request):
     page_obj = paginator.get_page(page_number)
     return render(request=request, template_name="GoldenTicket/movie_list.html", context={'movie_list': page_obj})
 
-
 def moviedetail(request, movie_page):
-    moviedetail = Movie.objects.get(movie_slug=movie_page)
-    return render(request=request, template_name='GoldenTicket/movie_detail.html', context={"moviedetail": moviedetail})
+    movie_detail = Movie.objects.get(movie_slug=movie_page)
+    return render(request=request, template_name='GoldenTicket/movie_detail.html', context={"movie_detail": movie_detail})
+
+
 
 # def movies(request):
 #     Movies = Movie.objects.all()

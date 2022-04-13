@@ -5,24 +5,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 </head>
 <body>
 {% block content %}
 
 
 <!--CTA-->
-<div class="container py-5">
-  <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-6 pb-4">
-      <h1 class="display-4 font-weight-bold">WELCOME CINEPHILES!!</h1>
-      <h5>Movie Database Website created by Group 4.</h5>
-        <a class="btn btn-primary mt-2" href="/movielist">Browse movies</a>
+<div class="cta-banner">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 pb-4">
+          <h1 class="display-4 font-weight-bold">WELCOME CINEPHILE {{ user.username|default:'Guest' }}!!</h1>
+          <h5>Movie Database Website created by Group 4.</h5>
+            <a class="btn btn-primary mt-2" href="/movielist">Browse movies</a>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-6">
-        <img class ="img-fluid" src="{% static 'images/Dunkirk_cta.jpeg' %}" alt="Dunkirk">
-    </div>
-  </div>
 </div>
 
 
@@ -36,8 +34,8 @@
           <div class="card h-100 pb-4" style="border: none" >
              <img src="{{ m.movie_poster.url }}" class="card-img-top" alt="{{ m.movie_title}}" style="width: auto; height: 250px; object-fit: contain;">
             <br>
-            <h4>{{m.movie_title}}</h4>
-            <p class="text-muted">{{m.release_year}} | {{m.director}}</p>
+            <h4 class="ellipses">{{m.movie_title}}</h4>
+            <p class="text-muted ellipses">{{m.release_year}} | {{m.director}}</p>
             <span class = "fa fa-star checked"> {{ m.movie_rating }} </span>
               <hr>
               <button class="btn btn-outline-dark btn-sm">View Movie</button>
@@ -46,6 +44,23 @@
         {% endfor %}
       </div>
     </div>
+
+    <style>
+	    .cta-banner {
+	      	background-image:
+	      	linear-gradient( to left, rgba(0,0,0,0) 10%, #fff 85%),
+	      	url("{% static "images/Dunkirk_cta.jpeg" %}");
+	     	height:400px;
+
+	      	background-attachment: fixed;
+	      	background-position: center bottom;
+	      	background-repeat: no-repeat;
+	      	background-size: cover;
+	      	z-index: auto;
+	      	position: relative;
+	    }
+  	</style>
+
 {% endblock %}
 </body>
 </html>

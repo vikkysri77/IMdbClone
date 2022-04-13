@@ -9,28 +9,29 @@
         <br>
         <div class="row">
         {% for m in movie_list %}
-
-        <div class="col-sm-2 col-sm-2 pb-4">
-          <div class="card h-100 pb-4" style="border: none" >
-             <img src="{{ m.movie_poster.url }}" class="card-img-top" alt="{{ m.movie_title}}" style="width: auto; height: 250px; object-fit: contain;">
-            <br>
-            <h4>{{m.movie_title}}</h4>
-            <p class="text-muted">{{m.release_year}} | {{m.director}}</p>
-            <span class = "fa fa-star checked"> {{ m.movie_rating }} </span>
-              <hr>
-              <button class="btn btn-outline-dark btn-sm">View Movie</button>
-
-          </div>
-        </div>
+                <div class="col-sm-2 col-sm-2 pb-4">
+                  <div class="card h-100 pb-4" style="border: none" >
+                     <img src="{{ m.movie_poster.url }}" class="card-img-top" alt="{{ m.movie_title}}" style="width: auto; height: 250px; object-fit: contain;">
+                    <br>
+                    <h4 class="ellipses">{{m.movie_title}}</h4>
+                    <p class="text-muted ellipses">{{m.release_year}} | {{m.director}}</p>
+                    <span class = "fa fa-star checked"> {{ m.movie_rating }} </span>
+                      <hr>
+                      <a href="/{{ m.movie_slug }}" style="text-decoration: none" >
+                      <button class="btn btn-outline-dark btn-sm">View Movie</button>
+                      </a>
+                  </div>
+                </div>
+            </a>
         {% endfor %}
 
     </div>
+
 
     {% for p in page_obj %}
     {% endfor %}
      <!--Pagination-->
         <div class="container">
-
             <div class="pagination justify-content-center">
                 <span class="step-links">
                     {% if movie_list.has_previous %}
@@ -42,7 +43,7 @@
                     </span>
                     {% if blog.has_next %}
                         <a href="?page={{ movie_list.next_page_number }}">next</a>
-                        <a href="?page={{ movie_list.paginator.num_pages }}">last &raquo;</a>
+                        <a href="?page={{ movie_list.num_pages }}">last &raquo;</a>
                     {% endif %}
                 </span>
             </div>

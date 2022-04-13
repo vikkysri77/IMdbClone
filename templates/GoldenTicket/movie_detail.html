@@ -10,14 +10,32 @@
 {% block content %}
 
     <!--Movie Detail-->
-    <div class="container">
-        <h1 class="font-weight-bold">{{ moviedetail.movie_title }}</h1>
-        <p class="font-weight-bold" style="font-size:15px">{{moviedetail.release_year}} | {{moviedetail.director}}</p>
+    <div class="movie-banner text-center">
+        <div class="container container d-flex flex-column justify-content-center align-items-center" style="height: 100%">
+            <h1 class="font-weight-bolder" style="color: floralwhite">{{ movie_detail.movie_title }}</h1>
+            <p class="font-weight-bold" style="font-size:15px; color: floralwhite">{{movie_detail.release_year}} | {{movie_detail.director}}</p>
+            <span class = "fa fa-star checked"style="font-size:15px; color: floralwhite"> {{ movie_detail.movie_rating }} </span>
+        </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <br>
-        <p>{{ moviedetail.description }}</p>
+        <p>{{ movie_detail.movie_desc }}</p>
     </div>
+
+    <style>
+        .movie-banner {
+            background-image: linear-gradient(to top, rgba(0,0,0,0) 50%, #fff 125%),
+            url("{{ movie_detail.movie_bg.url }}" );
+
+            height:350px;
+            background-attachment: fixed;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: auto;
+            position: relative;
+        }
+    </style>
 
 {% endblock %}
 </body>
