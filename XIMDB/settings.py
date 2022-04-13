@@ -77,16 +77,13 @@ WSGI_APPLICATION = 'XIMDB.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {},
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
     'users_db': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'users_db.sqlite3',
-        'USER': 'mdharry',
-        'PASSWORD': 'test123',
-    },
-    'db': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
         'USER': 'mdharry',
         'PASSWORD': 'test123',
     }
@@ -141,3 +138,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# users will be redirected to the home page after login
+LOGIN_REDIRECT_URL = "home"
+
+#logout
+LOGOUT_REDIRECT_URL = "login"

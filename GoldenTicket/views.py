@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
+from django_auth.users.views import *
 from .models import Movie
 
 
