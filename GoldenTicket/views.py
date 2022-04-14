@@ -1,3 +1,5 @@
+import random
+
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -17,8 +19,21 @@ def homepage(request):
         request.user.profile.movies.add(movie)
         messages.success(request, (f'{movie} added to wishlist.'))
         return redirect('GoldenTicket:homepage')
-    movies = Movie.objects.all()[:6]
-    return render(request=request, template_name="GoldenTicket/main.html", context={'movies': movies})
+    movies = list(Movie.objects.all()[:6])
+    movies_tr = Movie.objects.all().order_by('-movie_rating')[:6]
+    movies = random.sample(movies, 6)
+    return render(request=request, template_name="GoldenTicket/main.html", context={'movies': movies, 'movies_tr': movies_tr})
+
+
+# def top_rated(request):
+#     if request.method == "POST":
+#         movie_id = request.POST.get("movie_pk")
+#         movie = Movie.objects.get(id=movie_id)
+#         request.user.profile.movies.add(movie)
+#         messages.success(request, (f'{movie} added to wishlist.'))
+#         return redirect('GoldenTicket:homepage')
+#     movies_tr = Movie.objects.all().order_by('-movie_rating')[:6]
+#     return render(request=request, template_name="GoldenTicket/main.html", context={'movies_tr': movies_tr})
 
 
 # def register(request):
