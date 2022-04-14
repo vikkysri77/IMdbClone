@@ -21,28 +21,28 @@ def homepage(request):
     return render(request=request, template_name="GoldenTicket/main.html", context={'movies': movies})
 
 
-def register(request):
-    if request.method == "POST":
-        form = NewUserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect("GoldenTicket:homepage")
-    form = NewUserForm
-    return render(request=request, template_name="registration/signup.html", context={"form": form})
-
-
 # def register(request):
 #     if request.method == "POST":
 #         form = NewUserForm(request.POST)
 #         if form.is_valid():
 #             user = form.save()
 #             login(request, user)
-#             messages.success(request, "Successful registration!")
 #             return redirect("GoldenTicket:homepage")
-#         messages.error(request, "Invalid info. Try again.")
 #     form = NewUserForm
 #     return render(request=request, template_name="registration/signup.html", context={"form": form})
+
+
+def register(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Successful registration!")
+            return redirect("GoldenTicket:homepage")
+        messages.error(request, "Invalid info. Try again.")
+    form = NewUserForm
+    return render(request=request, template_name="registration/signup.html", context={"form": form})
 
 
 def login_request(request):
@@ -112,8 +112,8 @@ def userpage(request):
 # def remove_from_cart(request):
 #     if request.method == 'POST':
 #         movie_id = request.POST.get("movie_pk")
-#         # movie = Movie.objects.get(id=movie_id)
-#         movie = get_list_or_404(Movie, id=movie_id)
+#         movie = Movie.objects.get(id=movie_id)
+#         # movie = get_list_or_404(Movie, id=movie_id)
 #         request.user.profile.movies.remove(movie)
 #         messages.success(request, f'{movie} removed from wishlist.')
 #         return redirect('GoldenTicket:userpage')
