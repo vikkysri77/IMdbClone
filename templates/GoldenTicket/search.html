@@ -1,0 +1,43 @@
+{% extends "GoldenTicket/header.html" %}
+
+    {% block content %}
+
+    <!--Movies-->
+    <div class="container py-5">
+        <h1 class="font-weight-bold">Search Results</h1>
+        <hr>
+        <br>
+        <div class="row">
+        {% for q in query %}
+        <div class="col-sm-2 col-sm-offset-1 pb-4">
+          <div class="card h-100 pb-4" style="border: none" >
+             <img src="{{ q.movie_poster.url }}" class="card-img-top" alt="{{ q.movie_title}}" style="width: auto; height: 250px; object-fit: contain;">
+            <br>
+            <h4 class="ellipses">{{q.movie_title}}</h4>
+            <p class="text-muted ellipses">{{q.release_year}} | {{q.director}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                {% if user.is_authenticated %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{q.pk}}" name="movie_pk">
+                        <button type="submit" class="btn btn-outline-primary" style="font-size:18px; border-radius: 50%">+</button>
+                    </form>
+                {% else %}
+                    <a href="/signup" class="btn btn-outline-primary" style="font-size:18px; border-radius: 50%">+</a>
+                {% endif %}
+                    <span class = "fa fa-star checked"> {{ q.movie_rating }} </span>
+                </div>
+
+              <hr>
+            <a href="/{{ q.movie_slug }}" style="text-decoration: none" >
+              <button class="btn btn-outline-dark btn-sm">View Movie</button>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    </div>
+
+    {% endblock %}

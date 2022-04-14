@@ -3,6 +3,7 @@ import random
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_list_or_404
 from django.core.paginator import Paginator
 from django_auth.users.views import *
@@ -23,7 +24,6 @@ def homepage(request):
     movies_tr = Movie.objects.all().order_by('-movie_rating')[:6]
     movies = random.sample(movies, 6)
     return render(request=request, template_name="GoldenTicket/main.html", context={'movies': movies, 'movies_tr': movies_tr})
-
 
 # def top_rated(request):
 #     if request.method == "POST":
@@ -132,3 +132,13 @@ def userpage(request):
 #         request.user.profile.movies.remove(movie)
 #         messages.success(request, f'{movie} removed from wishlist.')
 #         return redirect('GoldenTicket:userpage')
+
+def search(request):
+    results = []
+    if request.method == "GET":
+        query = request.GET.get('search')
+        if query == '':
+            query = 'None'
+        results = Movie.objects.filter(Q(movie_title__icontains=query))
+    return render(request=request, template_name='GoldenTicket/search.html', context={'query': query, 'results': results})
+
