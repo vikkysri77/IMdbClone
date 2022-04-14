@@ -10,6 +10,8 @@ urlpatterns =[
     path("login/", views.login_request, name="login"),
     path("logout/", views.logout_request, name="logout"),
     path("<movie_page>", views.moviedetail, name="moviedetail"),
+    path("user/", views.userpage, name="userpage"),
+    # path("del/", views.remove_from_cart, name="del")
 
 ]
 
